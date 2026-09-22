@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import type { Order } from "../../types/order";
 import OrderStatus from "./OrderStatus";
+import UpdateStatusAction from "./UpdateStatusAction";
 
 interface OrderTableProps {
   orders: Order[];
+  onOrderUpdated?: (updatedOrder: Order) => void;
 }
 
-export function OrderTable({ orders }: OrderTableProps) {
+export function OrderTable({ orders, onOrderUpdated }: OrderTableProps) {
   if (orders.length === 0) {
     return (
       <div className="rounded-xl border border-gray-200 bg-white p-12 text-center shadow-xs">
@@ -162,25 +164,31 @@ export function OrderTable({ orders }: OrderTableProps) {
 
                   {/* Actions */}
                   <td className="whitespace-nowrap px-6 py-4 text-right">
-                    <Link
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-xs font-bold text-black shadow-2xs transition-all hover:bg-black hover:text-white"
-                      to={`/orders/${order.id}`}
-                    >
-                      <span>Detail</span>
-                      <svg
-                        className="h-3.5 w-3.5"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth={2}
-                        viewBox="0 0 24 24"
+                    <div className="flex items-center justify-end gap-2">
+                      <UpdateStatusAction
+                        order={order}
+                        onUpdated={onOrderUpdated}
+                      />
+                      <Link
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-xs font-bold text-black shadow-2xs transition-all hover:bg-black hover:text-white"
+                        to={`/orders/${order.id}`}
                       >
-                        <path
-                          d="M9 5l7 7-7 7"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </Link>
+                        <span>Detail</span>
+                        <svg
+                          className="h-3.5 w-3.5"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth={2}
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M9 5l7 7-7 7"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </Link>
+                    </div>
                   </td>
                 </tr>
               );

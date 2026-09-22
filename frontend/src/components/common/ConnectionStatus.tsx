@@ -6,7 +6,7 @@ interface Props {
 
 const config = {
   connected: {
-    label: "Connected (Real-Time)",
+    label: "Connected",
     badgeClass: "border-gray-200 bg-white text-gray-900",
     dotClass: "bg-emerald-500",
     pingClass: "bg-emerald-400",

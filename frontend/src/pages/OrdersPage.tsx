@@ -190,7 +190,10 @@ function OrdersPage() {
       </div>
 
       {/* Orders Table */}
-      <OrderTable orders={filteredOrders} />
+      <OrderTable
+        orders={filteredOrders}
+        onOrderUpdated={handleOrderUpdate}
+      />
     </div>
   );
 }

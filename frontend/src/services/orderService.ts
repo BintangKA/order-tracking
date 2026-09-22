@@ -31,9 +31,16 @@ export async function updateOrderStatus(
   id: number,
   payload: UpdateStatusPayload,
 ): Promise<Order> {
+  const finalPayload = {
+    event_id: payload.event_id || crypto.randomUUID(),
+    actor_type: payload.actor_type || "ADMIN",
+    actor_id: payload.actor_id || "admin-ui",
+    status: payload.status,
+  };
+
   const response = await api.patch<ApiResponse<Order>>(
     `/orders/${id}/status`,
-    payload,
+    finalPayload,
   );
 
   return response.data.data;

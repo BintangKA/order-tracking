@@ -1,10 +1,13 @@
 import type { SSEOrderEvent } from "../types/order";
 
-const SSE_URL =
-  import.meta.env.VITE_API_URL?.replace(/\/api$/, "") + "/api/orders/events";
+function getSseUrl(): string {
+  const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8080/api";
+  const baseUrl = apiUrl.replace(/\/api\/?$/, "");
+  return `${baseUrl}/api/orders/events`;
+}
 
 export function createOrderEventSource() {
-  return new EventSource(SSE_URL);
+  return new EventSource(getSseUrl());
 }
 
 export function parseOrderEvent(event: MessageEvent): SSEOrderEvent | null {

@@ -23,6 +23,14 @@ function useOrderEvents({ onOrderUpdated, onReconnect }: Options) {
 
   const sourceRef = useRef<EventSource | null>(null);
 
+  const onOrderUpdatedRef = useRef(onOrderUpdated);
+  const onReconnectRef = useRef(onReconnect);
+
+  useEffect(() => {
+    onOrderUpdatedRef.current = onOrderUpdated;
+    onReconnectRef.current = onReconnect;
+  }, [onOrderUpdated, onReconnect]);
+
   useEffect(() => {
     let cancelled = false;
 
@@ -48,12 +56,14 @@ function useOrderEvents({ onOrderUpdated, onReconnect }: Options) {
 
         setStatus("connected");
         if (wasPreviouslyConnected) {
-          onReconnect?.();
+          onReconnectRef.current?.();
         }
       };
 
       source.addEventListener("connected", () => {
-        setStatus("connected");
+        if (!cancelled) {
+          setStatus("connected");
+        }
       });
 
       source.addEventListener("order.updated", (event) => {
@@ -63,7 +73,7 @@ function useOrderEvents({ onOrderUpdated, onReconnect }: Options) {
           return;
         }
 
-        onOrderUpdated?.(parsed.data);
+        onOrderUpdatedRef.current?.(parsed.data);
       });
 
       source.onerror = () => {
@@ -98,7 +108,7 @@ function useOrderEvents({ onOrderUpdated, onReconnect }: Options) {
 
       sourceRef.current = null;
     };
-  }, [onOrderUpdated, onReconnect]);
+  }, []);
 
   return {
     status,

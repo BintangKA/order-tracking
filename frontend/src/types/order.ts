@@ -35,9 +35,9 @@ export interface CreateOrderPayload {
 
 export interface UpdateStatusPayload {
   status: OrderStatus;
-  event_id: string;
-  actor_type: string;
-  actor_id: string;
+  event_id?: string;
+  actor_type?: string;
+  actor_id?: string;
 }
 
 export interface CancelOrderPayload {
