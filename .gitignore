@@ -1,0 +1,115 @@
+
+---
+
+# 4. `.gitignore`
+
+Di **root project**:
+
+```gitignore
+# ==========================================
+# OS
+# ==========================================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==========================================
+# IDE / Editor
+# ==========================================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==========================================
+# Environment
+# ==========================================
+
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Keep example environment files
+!.env.example
+
+# ==========================================
+# Node / Frontend
+# ==========================================
+
+node_modules/
+dist/
+build/
+.vite/
+.cache/
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ==========================================
+# React / Vite
+# ==========================================
+
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# ==========================================
+# Go / Backend
+# ==========================================
+
+backend/bin/
+backend/tmp/
+
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Go test / coverage
+*.test
+coverage.out
+coverage.html
+
+# ==========================================
+# Logs
+# ==========================================
+
+*.log
+logs/
+
+# ==========================================
+# Temporary files
+# ==========================================
+
+*.tmp
+*.temp
+*.swp
+
+# ==========================================
+# Database
+# ==========================================
+
+*.db
+*.sqlite
+*.sqlite3
+
+# ==========================================
+# Docker
+# ==========================================
+
+docker-data/
+
+# ==========================================
+# Build / Generated
+# ==========================================
+
+coverage/
+out/
+tmp/
