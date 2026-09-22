@@ -26,6 +26,11 @@ func Setup(
 			orderHandler.UpdateStatus,
 		)
 
+		api.PATCH(
+			"/orders/:id",
+			orderHandler.UpdateStatus,
+		)
+
 		api.POST(
 			"/orders/:id/cancel",
 			orderHandler.CancelOrder,

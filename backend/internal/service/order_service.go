@@ -114,12 +114,20 @@ func (s *OrderService) UpdateStatus(
 	input UpdateStatusInput,
 ) (*models.Order, error) {
 
+	if input.Status == "" {
+		return nil, errors.New("status is required")
+	}
+
 	if input.EventID == "" {
-		return nil, errors.New("event_id is required")
+		input.EventID = fmt.Sprintf("evt-%d", time.Now().UnixNano())
 	}
 
 	if input.ActorType == "" {
-		input.ActorType = "SYSTEM"
+		input.ActorType = "ADMIN"
+	}
+
+	if input.ActorID == "" {
+		input.ActorID = "system"
 	}
 
 	order, err := s.GetOrder(ctx, id)

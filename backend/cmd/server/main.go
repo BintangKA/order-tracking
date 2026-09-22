@@ -5,7 +5,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/gin-contrib/cors"
 	"real-time-order-tracking/backend/internal/config"
 	"real-time-order-tracking/backend/internal/database"
 	"real-time-order-tracking/backend/internal/handler"
@@ -13,6 +12,8 @@ import (
 	"real-time-order-tracking/backend/internal/repository"
 	"real-time-order-tracking/backend/internal/routes"
 	"real-time-order-tracking/backend/internal/service"
+
+	"github.com/gin-contrib/cors"
 )
 
 func main() {
@@ -59,12 +60,14 @@ func main() {
 	router := gin.Default()
 
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:5173"},
-		AllowMethods:     []string{"GET", "POST", "PATCH", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Type", "Accept"},
+		AllowOriginFunc: func(origin string) bool {
+			return true
+		},
+		AllowMethods:     []string{"GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization", "X-Requested-With"},
 		AllowCredentials: true,
 	}))
-	
+
 	// Routes.
 	routes.Setup(
 		router,
