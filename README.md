@@ -121,3 +121,4 @@ Database otomatis dilengkapi dengan **20 dummy order** melalui file [backend/see
 3. Gunakan **Search Bar** untuk mencari order berdasarkan nama pelanggan atau nomor pesanan.
 4. Pada kolom **Aksi**, klik tombol **"Ubah Status"** untuk memajukan status order (misal dari `PENDING` ke `ASSIGNED`) dan perhatikan perubahan badge dan versi v1 ➔ v2 secara instan tanpa reload halaman.
 5. Klik **"Detail"** untuk melihat halaman detail yang menyajikan *Progress Stepper*, kartu identitas pelanggan, rincian pemesanan, tombol aksi status kontekstual, dan *Audit Trail* real-time.
+

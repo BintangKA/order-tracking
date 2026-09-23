@@ -141,3 +141,4 @@ File dummy data telah disediakan di `backend/seeds/seed.sql` berisi **20 order a
 - **`CANCELLED`**: Pesanan yang dibatalkan.
 
 Variasi layanan meliputi *AC Maintenance, Electrical Repair, CCTV Installation, Machine Inspection, Network Installation, Plumbing Repair*, dan lain-lain, sehingga reviewer dapat langsung menguji fungsionalitas pencarian, filter, transisi status, dan detail order tanpa perlu input data manual terlebih dahulu.
+
